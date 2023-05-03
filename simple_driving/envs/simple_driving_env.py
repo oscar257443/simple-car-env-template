@@ -80,16 +80,16 @@ class SimpleDrivingEnv(gym.Env):
                                   (carpos[1] - goalpos[1]) ** 2))
         
 
-        
+
         # distance_to_obstacle = (carpos[0] - goalpos[0]) ** 2 + (obstaclepos[1] - obstaclepos[1]) ** 2
         # distance_obstacle= math.sqrt(max(distance_to_obstacle, 2))
 
 
-        # # reward = max(self.prev_dist_to_goal - dist_to_goal, 0)
-        # if distance_obstacle < 4:
-        #     reward = -dist_to_goal - ( 4 - distance_obstacle) # Penalty for being too close to the obstacle max offset for 
-        # else:
-        #     reward = -dist_to_goal  # Encouragement to move towards the goal
+        # reward = max(self.prev_dist_to_goal - dist_to_goal, 0)
+        if distance_obstacle < 4:
+            reward = -dist_to_goal - 20 # Penalty for being too close to the obstacle max offset for 
+        else:
+            reward = -dist_to_goal  # Encouragement to move towards the goal
 
         reward = -dist_to_goal  # Encouragement to move towards the goal
         self.prev_dist_to_goal = dist_to_goal
