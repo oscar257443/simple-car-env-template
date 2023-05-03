@@ -40,6 +40,7 @@ class SimpleDrivingEnv(gym.Env):
         self._isDiscrete = isDiscrete
         self.car = None
         self.Obstacle = None
+        self.obspt = None
         self.goal_object = None
         self.goal = None
         self.done = False
@@ -114,14 +115,15 @@ class SimpleDrivingEnv(gym.Env):
         self._envStepCounter = 0
 
 
-        # Get the directory path of the current Python file
-        current_directory = os.path.dirname(__file__)
+        # # Get the directory path of the current Python file
+        # current_directory = os.path.dirname(__file__)
 
-        # Join the current directory path with the folder name "resources" and the file name "simpleObstacle.urdf"
-        file_path = os.path.join(os.path.dirname(current_directory), 'resources', 'simpleObstacle.urdf')
+        # # Join the current directory path with the folder name "resources" and the file name "simpleObstacle.urdf"
+        # file_path = os.path.join(os.path.dirname(current_directory), 'resources', 'simpleObstacle.urdf')
 
-        self.Obstacle = self._p.loadURDF(fileName=file_path,basePosition=[2, -3, 0])
-        # self.Obstacle = Obstacle(self._p, (2, -3))
+        # self.Obstacle = self._p.loadURDF(fileName=file_pathbasePosition=[2, -3, 0])
+        self.obspt = (2, -3)
+        self.Obstacle = Obstacle(self._p, self.obspt)
 
         # Set the goal to a random target
         x = (self.np_random.uniform(5, 9) if self.np_random.integers(2) else
