@@ -65,6 +65,7 @@ class SimpleDrivingEnv(gym.Env):
 
           carpos, carorn = self._p.getBasePositionAndOrientation(self.car.car)
           goalpos, goalorn = self._p.getBasePositionAndOrientation(self.goal_object.goal)
+          obstaclepos, obstacleorn = self._p.getBasePositionAndOrientation(self.Obstacle.Obstacle)
           car_ob = self.getExtendedObservation()
 
           if self._termination():
@@ -77,8 +78,17 @@ class SimpleDrivingEnv(gym.Env):
                                   # (car_ob[1] - self.goal[1]) ** 2))
         dist_to_goal = math.sqrt(((carpos[0] - goalpos[0]) ** 2 +
                                   (carpos[1] - goalpos[1]) ** 2))
+        
+        distance_to_obstacle = (carpos[0] - goalpos[0]) ** 2 + (obstaclepos[1] - obstaclepos[1]) ** 2
+        distance_obstacle= math.sqrt(max(distance_to_obstacle, 2))
+
+
         # reward = max(self.prev_dist_to_goal - dist_to_goal, 0)
-        reward = -dist_to_goal
+        if distance_obstacle < 4:
+            reward = -dist_to_goal - ( 4 - distance_obstacle) # Penalty for being too close to the obstacle max offset for 
+        else:
+            reward = -dist_to_goal  # Encouragement to move towards the goal
+
         self.prev_dist_to_goal = dist_to_goal
 
         # Done by reaching goal
