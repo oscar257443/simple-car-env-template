@@ -39,8 +39,7 @@ class SimpleDrivingEnv(gym.Env):
         self._renders = renders
         self._isDiscrete = isDiscrete
         self.car = None
-        self.Obstacle = None
-        self.obspt = None
+        self.ClassObstacle = None
         self.goal_object = None
         self.goal = None
         self.done = False
@@ -66,7 +65,7 @@ class SimpleDrivingEnv(gym.Env):
 
           carpos, carorn = self._p.getBasePositionAndOrientation(self.car.car)
           goalpos, goalorn = self._p.getBasePositionAndOrientation(self.goal_object.goal)
-          obstaclepos, obstacleorn = self._p.getBasePositionAndOrientation(self.Obstacle.Obstacle)
+          obstaclepos, obstacleorn = self._p.getBasePositionAndOrientation(self.ClassObstacle.Obstacle)
           car_ob = self.getExtendedObservation()
 
           if self._termination():
@@ -122,8 +121,7 @@ class SimpleDrivingEnv(gym.Env):
         # file_path = os.path.join(os.path.dirname(current_directory), 'resources', 'simpleObstacle.urdf')
 
         # self.Obstacle = self._p.loadURDF(fileName=file_pathbasePosition=[2, -3, 0])
-        self.obspt = (2, -3)
-        self.Obstacle = Obstacle(self._p, self.obspt)
+        self.Obstacle = ClassObstacle(self._p)
 
         # Set the goal to a random target
         x = (self.np_random.uniform(5, 9) if self.np_random.integers(2) else
