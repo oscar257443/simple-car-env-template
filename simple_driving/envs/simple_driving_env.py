@@ -88,7 +88,8 @@ class SimpleDrivingEnv(gym.Env):
             reward = -dist_to_goal - ( 4 - distance_obstacle) # Penalty for being too close to the obstacle max offset for 
         else:
             reward = -dist_to_goal  # Encouragement to move towards the goal
-
+            
+        reward = -dist_to_goal  # Encouragement to move towards the goal
         self.prev_dist_to_goal = dist_to_goal
 
         # Done by reaching goal
