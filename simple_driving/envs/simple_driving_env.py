@@ -120,7 +120,7 @@ class SimpleDrivingEnv(gym.Env):
         # Join the current directory path with the folder name "resources" and the file name "simpleObstacle.urdf"
         file_path = os.path.join(os.path.dirname(current_directory), 'resources', 'simpleObstacle.urdf')
 
-        self.Obstacle = self._p.loadURDF(fileName=<file_path>,basePosition=[2, -3, 0])
+        self.Obstacle = self._p.loadURDF(fileName=file_path,basePosition=[2, -3, 0])
         # self.Obstacle = Obstacle(self._p, (2, -3))
 
         # Set the goal to a random target
