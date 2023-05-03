@@ -6,6 +6,7 @@ from pybullet_utils import bullet_client as bc
 from simple_driving.resources.car import Car
 from simple_driving.resources.plane import Plane
 from simple_driving.resources.goal import Goal
+from simple_driving.resources.Obstacle import Obstacle
 import matplotlib.pyplot as plt
 import time
 
@@ -38,6 +39,7 @@ class SimpleDrivingEnv(gym.Env):
         self._renders = renders
         self._isDiscrete = isDiscrete
         self.car = None
+        self.Obstacle = None
         self.goal_object = None
         self.goal = None
         self.done = False
@@ -100,6 +102,7 @@ class SimpleDrivingEnv(gym.Env):
         Plane(self._p)
         self.car = Car(self._p)
         self._envStepCounter = 0
+        self.Obstacle = Obstacle(3,-2)
 
         # Set the goal to a random target
         x = (self.np_random.uniform(5, 9) if self.np_random.integers(2) else

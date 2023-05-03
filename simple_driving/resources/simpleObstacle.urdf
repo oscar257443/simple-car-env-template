@@ -1,0 +1,28 @@
+<?xml version="1.0"?> 
+<robot name="simpleobstacle">
+    <!-- Colors --> 
+    <material name="purple">
+        <color rgba="0.47 0.09 0.73 0.8"/>
+    </material>
+
+    <!-- Goal -->
+    <link name="base_link">
+        <visual>
+            <geometry> 
+                <box size="1 1 1"/>
+                <origin rpy="0 0 0" xyz="0 0 0.5"/>
+            </geometry>
+            <material name="purple"/>
+        </visual>
+        <collision> 
+             <geometry> 
+                <box size="80 80 0.01"/>
+                <origin rpy="0 0 0" xyz="-10 -10 -0.005"/>
+            </geometry>
+        </collision>  
+        <inertial> 
+            <mass value="45"/>
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+        </inertial> 
+    </link>
+</robot>
