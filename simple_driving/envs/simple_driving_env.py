@@ -91,7 +91,7 @@ class SimpleDrivingEnv(gym.Env):
         # else:
         #     reward = -dist_to_goal  # Encouragement to move towards the goal
 
-        reward = -dist_to_goal #+ (distance_obstacle /5)  # Encouragement to move towards the goal
+        reward = -dist_to_goal + (distance_obstacle /5)  # Encouragement to move towards the goal
         self.prev_dist_to_goal = dist_to_goal
         if distance_obstacle < 2:
             if distance_obstacle < 1 :
