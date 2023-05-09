@@ -98,9 +98,11 @@ class SimpleDrivingEnv(gym.Env):
                 print("extremely close")
             else:
                 print("Close to Obstacle")
+        if distance_obstacle < 12 and distance_obstacle > 2:
+            print("Avoiding object")
         # Done by reaching goal
         if dist_to_goal < 1.5 and not self.reached_goal:
-            print("reached goal")
+            print("reached goal +++++++++++++++")
             reward = 50
             self.done = True
             self.reached_goal = True

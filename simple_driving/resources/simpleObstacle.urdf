@@ -1,5 +1,5 @@
 <?xml version="1.0"?> 
-<robot name="simpleobstacle">
+<robot name="simpleObstacle">
     <!-- Colors --> 
     <material name="purple">
         <color rgba="0.47 0.09 0.73 0.8"/>
