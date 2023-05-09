@@ -39,7 +39,7 @@ class SimpleDrivingEnv(gym.Env):
         self._renders = renders
         self._isDiscrete = isDiscrete
         self.car = None
-        self.ClassObstacle = None
+        self.Obstacle = None
         self.goal_object = None
         self.goal = None
         self.done = False
@@ -144,7 +144,7 @@ class SimpleDrivingEnv(gym.Env):
 
 
         
-        self.Obstacle = ClassObstacle(self._p,(x/2,y/2))
+        self.Obstacle = Obstacle(self._p,(x/2,y/2))
         # Visual element of the goal
         self.goal_object = Goal(self._p, self.goal)
 
