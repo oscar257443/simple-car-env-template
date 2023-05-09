@@ -81,17 +81,17 @@ class SimpleDrivingEnv(gym.Env):
         
 
 
-        # distance_to_obstacle = (carpos[0] - goalpos[0]) ** 2 + (obstaclepos[1] - obstaclepos[1]) ** 2
-        # distance_obstacle= math.sqrt(max(distance_to_obstacle, 2))
+        distance_to_obstacle = (carpos[0] - goalpos[0]) ** 2 + (obstaclepos[1] - obstaclepos[1]) ** 2
+        distance_obstacle= math.sqrt(max(distance_to_obstacle, 2))
 
 
         # reward = max(self.prev_dist_to_goal - dist_to_goal, 0)
-        if distance_obstacle < 4:
-            reward = -dist_to_goal - 20 # Penalty for being too close to the obstacle max offset for 
-        else:
-            reward = -dist_to_goal  # Encouragement to move towards the goal
+        # if distance_obstacle < 4:
+        #     reward = -dist_to_goal - 20 # Penalty for being too close to the obstacle max offset for 
+        # else:
+        #     reward = -dist_to_goal  # Encouragement to move towards the goal
 
-        reward = -dist_to_goal  # Encouragement to move towards the goal
+        reward = -dist_to_goal - (distance_obstacle /5)  # Encouragement to move towards the goal
         self.prev_dist_to_goal = dist_to_goal
 
         # Done by reaching goal
@@ -124,7 +124,7 @@ class SimpleDrivingEnv(gym.Env):
         # file_path = os.path.join(os.path.dirname(current_directory), 'resources', 'simpleObstacle.urdf')
 
         # self.Obstacle = self._p.loadURDF(fileName=file_pathbasePosition=[2, -3, 0])
-        self.Obstacle = ClassObstacle(self._p)
+        
 
         # Set the goal to a random target
         x = (self.np_random.uniform(5, 9) if self.np_random.integers(2) else
@@ -137,7 +137,7 @@ class SimpleDrivingEnv(gym.Env):
 
 
         
-
+        self.Obstacle = ClassObstacle(self._p,(x/2,y/2))
         # Visual element of the goal
         self.goal_object = Goal(self._p, self.goal)
 
