@@ -6,7 +6,7 @@ from pybullet_utils import bullet_client as bc
 from simple_driving.resources.car import Car
 from simple_driving.resources.plane import Plane
 from simple_driving.resources.goal import Goal
-from simple_driving.resources.Obstacle import Obstacle
+from simple_driving.resources.obstacle import Obstacle
 import matplotlib.pyplot as plt
 import time
 
